@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: voting-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    container_name: voting-backend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend/contestants.json:/app/contestants.json
+

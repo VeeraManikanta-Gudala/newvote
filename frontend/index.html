@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Vote for Cats or Dogs</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Vote for Your Favorite!</h1>
+    <button onclick="vote(1)">Vote for Cats</button>
+    <button onclick="vote(2)">Vote for Dogs</button><br>
+    <button onclick="vote(3)">Vote for Tiger</button>
+    <button onclick="vote(4)">Vote for Lion</button><br><br>
+    <button onclick="window.location.href='results.html'">View Results</button>
+  </div>
+  <script>
+    function vote(id) {
+      fetch('http://localhost:3000/vote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id }),
+      })
+        .then((response) => response.json())
+        .then((data) => alert(data.message))
+        .catch((error) => console.error('Error:', error));
+    }
+  </script>
+</body>
+</html>
