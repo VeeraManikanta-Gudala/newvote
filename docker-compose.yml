@@ -8,7 +8,14 @@ services:
       - "8080:80"
     depends_on:
       - backend
-
+  fe-results:
+    build: ./fe-results
+    container_name: voting-results
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+      - frontend
   backend:
     build: ./backend
     container_name: voting-backend
